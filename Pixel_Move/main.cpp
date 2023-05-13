@@ -157,30 +157,21 @@ class Engine
 public:
         void update(chrono::milliseconds deltaTime)
         {
-                float timer;
-                if(deltaTime < 6000ms)
-                {
-                        timer = deltaTime.count();
-                }
-                else
-                {
-                        timer -= abs(deltaTime.count());
-                }
+                float timer = deltaTime.count() % 6000;
                 if(timer <= 2000)
                 {
                         position.x = timer / 50;
                 }
                 else if(timer <= 5000)
                 {
-                        position.y = timer / 500;
+                        position.y = (timer - 2000) / 300;
                 }
                 else if(timer <= 6000)
                 {
-                        position.x = (timer / 300);
-                        position.y = (timer / 300);
+                        position.x = 40 - ((timer - 5000) / 25);
+                        position.y = 10 - ((timer - 5000) / 100);
                 }
         }
-
 
         void render(Screen& screen)
         {
